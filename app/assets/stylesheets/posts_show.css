@@ -1,0 +1,114 @@
+.brand-font {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+} 
+
+.btn-kawaii {
+    background-color: #ff6b9d;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 0 #d44d7d;
+    transition: all 0.3s;
+}
+
+.btn-kawaii:hover {
+    background-color: #ff5a8a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #d44d7d;
+    color: white;
+}
+
+.btn-hover-scale {
+    transition: transform 0.2s;
+}
+
+.btn-hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.post-image-container {
+    position: relative;
+    overflow: hidden;
+    max-height: 400px;
+}
+
+.post-header-image {
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.post-image-container:hover .post-header-image {
+    transform: scale(1.02);
+} 
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.post-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.post-content p {
+    margin-bottom: 1.5rem;
+} 
+
+.post-actions .btn {
+    padding: 8px 20px;
+    transition: all 0.3s;
+}
+
+.btn-like:hover, .btn-like.active {
+    color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+.btn-like.active i {
+    font-weight: 900;
+}
+
+.shadow-sm-hover {
+    transition: box-shadow 0.3s;
+}
+
+.shadow-sm-hover:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1) !important;
+}
+
+.animate__animated {
+    opacity: 0;
+}
+
+.animate__fadeIn {
+    animation-name: fadeIn;
+}
+
+.animate__fadeInUp {
+    animation-name: fadeInUp;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}

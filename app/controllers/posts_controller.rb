@@ -35,11 +35,9 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "Post was successfully deleted."
   end
 
-  def index
-    @posts = Post.order(created_at: :desc)
-  end
-
   def show
+    @post_comments = @post.comments.includes(:user)
+    @comment = @post.comments.new
   end
 
   private
