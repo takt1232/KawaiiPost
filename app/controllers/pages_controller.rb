@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
-  def index
-  end
+  before_action :authenticate_user!, only: [ :home ]
 
-  def home
+  def index
   end
 end

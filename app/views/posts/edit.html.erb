@@ -1,0 +1,60 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold brand-font text-primary">
+          <i class="fas fa-edit me-2"></i>Edit Post
+        </h1>
+        <%= link_to "Cancel", posts_path, class: "btn btn-outline-secondary" %>
+      </div>
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-5">
+          <%= form_with(model: @post, local: true) do |f| %>
+            <% if @post.errors.any? %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <h5 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Please fix these issues:</h5>
+                <ul class="mb-0">
+                  <% @post.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <% end %>
+            <div class="mb-4">
+              <%= f.label :title, "Post Title", class: "form-label fw-bold" %>
+              <%= f.text_field :title, class: "form-control form-control-lg #{'is-invalid' if @post.errors[:title].any?}", required: true %>
+              <% if @post.errors[:title].any? %>
+                <div class="invalid-feedback d-block">
+                  <i class="fas fa-info-circle me-1"></i><%= @post.errors[:title].first %>
+                </div>
+              <% end %>
+            </div>
+            <div class="mb-4">
+              <%= f.label :body, "Post Content", class: "form-label fw-bold" %>
+              <%= f.text_area :body, rows: 10, class: "form-control #{'is-invalid' if @post.errors[:body].any?}", required: true %>
+              <% if @post.errors[:body].any? %>
+                <div class="invalid-feedback d-block">
+                  <i class="fas fa-info-circle me-1"></i><%= @post.errors[:body].first %>
+                </div>
+              <% end %>
+            </div>
+            <div class="mb-4">
+              <%= f.label :published_date, "Publish Date", class: "form-label fw-bold" %>
+              <%= f.datetime_local_field :published_date, class: "form-control #{'is-invalid' if @post.errors[:published_date].any?}" %>
+              <% if @post.errors[:published_date].any? %>
+                <div class="invalid-feedback d-block">
+                  <i class="fas fa-info-circle me-1"></i><%= @post.errors[:published_date].first %>
+                </div>
+              <% end %>
+            </div>
+            <div class="d-flex justify-content-end gap-3 mt-5">
+              <%= link_to "Cancel", posts_path, class: "btn btn-outline-secondary" %>
+              <%= f.submit "Save Post", class: "btn btn-kawaii" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

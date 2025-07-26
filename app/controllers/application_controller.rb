@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     if resource.is_a?(Admin)
       admin_dashboard_path
     elsif resource.is_a?(User)
-      pages_home_path
+      posts_path
     else
       super
     end
