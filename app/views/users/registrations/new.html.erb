@@ -1,0 +1,90 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "sign_in.css", "data-turbo-track": "reload" %>
+<% end %>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card border-0 shadow-sm animate-fadeIn" style="border-radius: 15px;">
+        <div class="card-body p-5">
+          <div class="text-center mb-5">
+            <h2 class="fw-bold brand-font text-primary">
+              <i class="fas fa-cat me-2"></i>Join KawaiiPost
+            </h2>
+            <p class="text-muted">Start sharing your anime passion with our community</p>
+          </div>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
+            <% if resource.errors.any? %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <h5 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Oops! Please fix these issues:</h5>
+                <ul class="mb-0">
+                  <% resource.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <% end %>
+            <div class="mb-4">
+              <%= f.label :email, class: "form-label fw-bold" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", 
+                  class: "form-control form-control-lg #{'is-invalid' if resource.errors[:email].any?}", 
+                  placeholder: "your@email.com",
+                  required: true,
+                  style: "border-radius: 10px;" %>
+              <div class="invalid-feedback">
+                Please provide a valid email address.
+              </div>
+              <% if resource.errors[:email].any? %>
+                <div class="text-danger small mt-1">
+                  <i class="fas fa-info-circle me-1"></i><%= resource.errors[:email].first %>
+                </div>
+              <% end %>
+            </div>
+            <div class="mb-4">
+              <%= f.label :password, class: "form-label fw-bold" %>
+              <%= f.password_field :password, autocomplete: "new-password", 
+                  class: "form-control form-control-lg #{'is-invalid' if resource.errors[:password].any?}", 
+                  placeholder: "••••••••",
+                  required: true,
+                  style: "border-radius: 10px;" %>
+              <div class="invalid-feedback">
+                Password is required.
+              </div>
+              <% if resource.errors[:password].any? %>
+                <div class="text-danger small mt-1">
+                  <i class="fas fa-info-circle me-1"></i><%= resource.errors[:password].first %>
+                </div>
+              <% elsif @minimum_password_length %>
+                <div class="form-text">
+                  <i class="fas fa-lock me-1"></i>Minimum <%= @minimum_password_length %> characters
+                </div>
+              <% end %>
+            </div>
+            <div class="mb-4">
+              <%= f.label :password_confirmation, class: "form-label fw-bold" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", 
+                  class: "form-control form-control-lg #{'is-invalid' if resource.errors[:password_confirmation].any?}", 
+                  placeholder: "••••••••",
+                  required: true,
+                  style: "border-radius: 10px;" %>
+              <div class="invalid-feedback">
+                Please confirm your password.
+              </div>
+              <% if resource.errors[:password_confirmation].any? %>
+                <div class="text-danger small mt-1">
+                  <i class="fas fa-info-circle me-1"></i><%= resource.errors[:password_confirmation].first %>
+                </div>
+              <% end %>
+            </div>
+            <div class="d-grid mb-4">
+              <%= f.submit "Sign up", class: "btn btn-kawaii btn-lg", style: "border-radius: 50px;" %>
+            </div>
+          <% end %>
+          <div class="text-center pt-4 border-top">
+            <%= render "users/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

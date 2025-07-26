@@ -1,0 +1,61 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "sign_in.css", "data-turbo-track": "reload" %>
+<% end %>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card border-0 shadow-sm animate-fadeIn" style="border-radius: 15px;">
+        <div class="card-body p-5">
+          <div class="text-center mb-5">
+            <h2 class="fw-bold brand-font text-primary">
+              <i class="fas fa-cat me-2"></i>Welcome Back!
+            </h2>
+            <p class="text-muted">Log in to continue your anime journey</p>
+          </div>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
+            <% if alert %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i><%= alert %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <% end %>
+            <div class="mb-4">
+              <%= f.label :email, class: "form-label fw-bold" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", 
+                  class: "form-control form-control-lg", 
+                  placeholder: "your@email.com",
+                  required: true,
+                  style: "border-radius: 10px;" %>
+              <div class="invalid-feedback">
+                Please provide a valid email address.
+              </div>
+            </div>
+            <div class="mb-4">
+              <%= f.label :password, class: "form-label fw-bold" %>
+              <%= f.password_field :password, autocomplete: "current-password", 
+                  class: "form-control form-control-lg", 
+                  placeholder: "••••••••",
+                  required: true,
+                  style: "border-radius: 10px;" %>
+              <div class="invalid-feedback">
+                Password is required.
+              </div>
+            </div>
+            <% if devise_mapping.rememberable? %>
+              <div class="mb-4 form-check">
+                <%= f.check_box :remember_me, class: "form-check-input" %>
+                <%= f.label :remember_me, class: "form-check-label" %>
+              </div>
+            <% end %>
+            <div class="d-grid mb-4">
+              <%= f.submit "Log in", class: "btn btn-kawaii btn-lg", style: "border-radius: 50px;" %>
+            </div>
+          <% end %>
+          <div class="text-center pt-4 border-top">
+            <%= render "users/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

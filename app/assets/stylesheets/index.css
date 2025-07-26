@@ -1,0 +1,176 @@
+:root {
+    --primary: #4a6bff;
+    --secondary: #6bd5ff;
+    --dark: #1a1a2e;
+    --light: #f0f8ff;
+    --accent: #ff6b9a;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    background-color: #f8fbff;
+}
+
+.brand-font {
+    font-family: 'Comfortaa', cursive;
+}
+
+/* Anime-themed background pattern */
+.anime-bg {
+    background-color: #f0f8ff;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a6bff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Element-specific styles */
+.navbar {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    animation: gradientBG 8s ease infinite;
+    background-size: 200% 200%;
+}
+
+.hero-img {
+    animation: float 4s ease-in-out infinite;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+.feature-card {
+    transition: all 0.3s ease;
+    border-radius: 15px !important;
+    border: 1px solid rgba(74, 107, 255, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(74, 107, 255, 0.1) !important;
+}
+
+.feature-icon {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 2.5rem;
+}
+
+.post-card {
+    transition: all 0.3s ease;
+    border-radius: 12px !important;
+    overflow: hidden;
+    border: 1px solid rgba(74, 107, 255, 0.1);
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(74, 107, 255, 0.1) !important;
+}
+
+.post-card img {
+    transition: transform 0.5s ease;
+}
+
+.post-card:hover img {
+    transform: scale(1.05);
+}
+
+.btn-kawaii {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border: none;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border-radius: 50px !important;
+    padding: 10px 25px;
+}
+
+.btn-kawaii:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(74, 107, 255, 0.4);
+    color: white;
+}
+
+.btn-outline-primary {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 4px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    bottom: -10px;
+    left: 25%;
+    border-radius: 2px;
+}
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+/* Animation classes */
+.animate-fadeIn {
+    animation: fadeIn 1s ease forwards;
+}
+
+.animate-delay-1 {
+    animation-delay: 0.2s;
+}
+
+.animate-delay-2 {
+    animation-delay: 0.4s;
+}
+
+.animate-delay-3 {
+    animation-delay: 0.6s;
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-img {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+}
