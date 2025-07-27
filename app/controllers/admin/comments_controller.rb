@@ -4,12 +4,16 @@ class Admin::CommentsController < ApplicationController
   before_action :set_comment, only: [ :destroy, :edit, :update ]
 
   def index
-    @comments = Comment.all
+    @comments = Comment.includes(:user, :post)
 
     if params[:query].present?
-      query = "%#{params[:query]}%"
-      @comments = @comments.where("content ILIKE ? OR user ILIKE ?", query, query)
-    end
+      search_query = "%#{params[:query].downcase}%"
+      @comments = @comments.joins(:user, :post)
+                          .where("LOWER(comments.content) LIKE :query OR 
+                                  LOWER(users.email) LIKE :query OR
+                                  LOWER(posts.title) LIKE :query", 
+                                  query: search_query)
+  end
 
     @comments = @comments.order(created_at: :desc)
   end
