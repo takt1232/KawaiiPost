@@ -1,2 +1,42 @@
-<h1>Comments#edit</h1>
-<p>Find me in app/views/comments/edit.html.erb</p>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold brand-font text-primary">
+          <i class="fas fa-comment me-2"></i>Edit Comment
+        </h1>
+        <%= link_to "Cancel", post_path(@comment.post), class: "btn btn-outline-secondary" %>
+      </div>
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-5">
+          <%= form_with(model: [@comment.post, @comment], local: true) do |f| %>
+            <% if @comment.errors.any? %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <h5 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Please fix these issues:</h5>
+                <ul class="mb-0">
+                  <% @comment.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <% end %>
+            <div class="mb-4">
+              <%= f.label :content, "Comment Content", class: "form-label fw-bold" %>
+              <%= f.text_area :content, rows: 6, class: "form-control #{'is-invalid' if @comment.errors[:content].any?}", required: true %>
+              <% if @comment.errors[:content].any? %>
+                <div class="invalid-feedback d-block">
+                  <i class="fas fa-info-circle me-1"></i><%= @comment.errors[:content].first %>
+                </div>
+              <% end %>
+            </div>
+            <div class="d-flex justify-content-end gap-3 mt-5">
+              <%= link_to "Cancel", post_path(@comment.post), class: "btn btn-outline-secondary" %>
+              <%= f.submit "Update Comment", class: "btn btn-kawaii" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,9 +11,9 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to @post, notice: "Comment posted!", status: :see_other
+      redirect_to post_path(@comment.post), notice: "Comment posted!", status: :see_other
     else
-      redirect_to @post, alert: "Failed to post comment.", status: :see_other
+      redirect_to post_path(@comment.post), alert: "Failed to post comment.", status: :see_other
     end
   end
 
@@ -26,9 +26,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    post = @comment.post
+    @post = @comment.post
     @comment.destroy
-    redirect_to post_path(post), notice: "Comment was successfully deleted.", status: :see_other
+    redirect_to post_path(@comment.post), notice: "Comment was successfully deleted.", status: :see_other
   end
 
   private
