@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_07_26_112110) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -24,8 +27,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_112110) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,7 +37,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_112110) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "title"
     t.text "body"
     t.datetime "published_date"
