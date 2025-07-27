@@ -1,0 +1,148 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "admin_dashboard.css", "data-turbo-track": "reload" %>
+<% end %>
+<!-- Sidebar -->
+<%= render 'admin/shared/sidebar'%>
+<!-- Main Content -->
+<div class="main-content">
+  <!-- Top Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <button class="btn d-lg-none me-3" type="button" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <span class="navbar-brand mb-0 h1">Dashboard Overview</span>
+      <div class="ms-auto">
+        <div class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <i class="fas fa-user-circle me-2"></i>Admin
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Content -->
+  <div class="content-wrapper">
+    <%= turbo_stream_from "admin_dashboard" %>
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#" style="color: var(--primary-color); text-decoration: none;">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+      </ol>
+    </nav>
+    <h1 class="page-title">Dashboard Overview</h1>
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card stats-card">
+          <div class="card-body text-center p-4">
+            <div class="stats-number" id="posts-count"><%= @posts_count %></div>
+            <p class="stats-label mb-0">Total Posts</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card stats-card">
+          <div class="card-body text-center p-4">
+            <div class="stats-number" id="comments-count"><%= @comments_count %></div>
+            <p class="stats-label mb-0">Total Comments</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card stats-card">
+          <div class="card-body text-center p-4">
+            <div class="stats-number" id="users-count"><%= @users_count %></div>
+            <p class="stats-label mb-0">Registered Users</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom Section -->
+    <div class="row">
+      <div class="col-lg-12 mb-4">
+        <div class="card activity-card">
+          <div class="card-header">
+            <h5><i class="fas fa-history me-2"></i>Recent Activity</h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="activity-item">
+              <div class="d-flex align-items-center">
+                <div class="activity-icon posts me-3">
+                  <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="fw-semibold">New post published</div>
+                  <small class="text-muted">"Getting Started with React" by John Doe</small>
+                </div>
+                <small class="text-muted">2 min ago</small>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="d-flex align-items-center">
+                <div class="activity-icon comments me-3">
+                  <i class="fas fa-comment"></i>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="fw-semibold">New comment received</div>
+                  <small class="text-muted">Jane Smith commented on "Web Design Tips"</small>
+                </div>
+                <small class="text-muted">5 min ago</small>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="d-flex align-items-center">
+                <div class="activity-icon users me-3">
+                  <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="fw-semibold">New user registered</div>
+                  <small class="text-muted">Mike Johnson joined the platform</small>
+                </div>
+                <small class="text-muted">15 min ago</small>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="d-flex align-items-center">
+                <div class="activity-icon posts me-3">
+                  <i class="fas fa-edit"></i>
+                </div>
+                <div class="flex-grow-1">
+                  <div class="fw-semibold">Post updated</div>
+                  <small class="text-muted">"CSS Grid Layout" has been modified</small>
+                </div>
+                <small class="text-muted">1 hour ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= content_for :scripts do %>
+  <script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('show');
+    }
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.querySelector('[onclick="toggleSidebar()"]');
+
+        if (window.innerWidth <= 768 &&
+            !sidebar.contains(e.target) &&
+            !toggleBtn.contains(e.target) &&
+            sidebar.classList.contains('show')) {
+            sidebar.classList.remove('show');
+        }
+    });
+  </script>
+<% end %>

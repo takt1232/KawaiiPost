@@ -1,0 +1,35 @@
+<tr>
+  <td>
+    <td><%= check_box_tag "comment_ids[]", comment.id, false, class: "comment-checkbox" %></td>
+  </td>
+  <td>
+    <div class="comment-content">
+      <div class="comment-text"><%= comment.content %></div>
+      <div class="comment-meta">
+        <i class="fas fa-clock me-1"></i><%= time_ago_in_words(comment.created_at) %>
+      </div>
+    </div>
+  </td>
+  <td>
+    <div class="author-info">
+      <div class="author-avatar"><%= comment.user.email[0].upcase %></div>
+      <div>
+        <small class="text-muted"><%= comment.user.email %></small>
+      </div>
+    </div>
+  </td>
+  <td>
+    <%= link_to comment.post.title, admin_post_path(comment.post), class: "post-link" %>
+  </td>
+  <td>
+    <div><%= comment.created_at.strftime("%B %e, %Y")%></div>
+  </td>
+  <td>
+    <%= link_to edit_admin_post_comment_path(comment.post, comment), class: 'action-btn btn-edit', title: 'Edit' do %>
+      <i class="fas fa-edit"></i>
+    <% end %>
+    <%= link_to admin_comment_path(comment), class: 'action-btn btn-delete', title: 'Delete', data: { turbo_method: :delete, turbo_confirm: "Delete this posts?" } do %>
+      <i class="fas fa-trash"></i>
+    <% end %>
+  </td>
+</tr>

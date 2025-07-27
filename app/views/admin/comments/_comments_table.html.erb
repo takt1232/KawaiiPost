@@ -1,0 +1,17 @@
+<table class="table custom-table">
+  <thead>
+    <tr>
+      <th width="40">
+        <input type="checkbox" id="select-all" onclick="toggleAllCheckboxes(this)">
+      </th>
+      <th>Comment</th>
+      <th>Author</th>
+      <th>Post</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "comment", collection: @comments %>
+  </tbody>
+</table>

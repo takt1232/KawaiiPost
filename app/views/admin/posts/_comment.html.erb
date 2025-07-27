@@ -1,0 +1,25 @@
+<li class="comment-item">
+  <div class="d-flex">
+    <input type="checkbox" class="form-check-input comment-checkbox me-3 mt-1">
+    <div style="flex-grow: 1;">
+      <div class="comment-author">
+        <div class="comment-avatar"><%= comment.user.email[0].upcase %></div>
+        <div class="comment-meta">
+          <div class="comment-name"><%= comment.user.email %></div>
+          <div class="comment-date"><%= comment.created_at.strftime("%B %e, %Y") %></div>
+        </div>
+      </div>
+      <div class="comment-content">
+        <%= comment.content %>
+      </div>
+      <div class="comment-actions">
+        <%= link_to edit_admin_post_comment_path(comment.post, comment), class: 'action-btn btn-edit', title: 'Edit' do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+        <button class="action-btn btn-delete" title="Delete">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</li>

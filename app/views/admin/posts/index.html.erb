@@ -1,0 +1,127 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "admin_posts.css", "data-turbo-track": "reload" %>
+<% end %>
+<!-- Sidebar -->
+<%= render 'admin/shared/sidebar'%>
+<!-- Main Content -->
+<div class="main-content">
+  <!-- Top Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <button class="btn d-lg-none me-3" type="button" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <span class="navbar-brand mb-0 h1">Posts Management</span>
+      <div class="ms-auto">
+        <div class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <i class="fas fa-user-circle me-2"></i>Admin
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Content -->
+  <div class="content-wrapper">
+    <%= turbo_stream_from "admin_posts" %>
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#" style="color: var(--primary-color); text-decoration: none;">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Posts</li>
+      </ol>
+    </nav>
+    <h1 class="page-title">Posts Management</h1>
+    <!-- Filters Card -->
+    <div class="card filter-card">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label fw-semibold">Search Posts</label>
+            <div class="input-group">
+              <span class="input-group-text bg-white border-end-0">
+                <i class="fas fa-search text-muted"></i>
+              </span>
+              <input type="text" class="form-control search-input border-start-0" placeholder="Search by title, content, or author...">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label fw-semibold">Category</label>
+            <select class="form-select filter-select">
+              <option value="">All Categories</option>
+              <option value="technology">Technology</option>
+              <option value="lifestyle">Lifestyle</option>
+              <option value="business">Business</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label fw-semibold">Date Range</label>
+            <select class="form-select filter-select">
+              <option value="">All Time</option>
+              <option value="today">Today</option>
+              <option value="week">This Week</option>
+              <option value="month">This Month</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">&nbsp;</label>
+            <div class="d-grid">
+              <button class="btn primary-btn">
+                <i class="fas fa-filter me-2"></i>Filter
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Posts Table -->
+    <div class="card posts-table-card">
+      <div class="table-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5><i class="fas fa-file-alt me-2"></i>All Posts <%= @posts.count %></h5>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-danger btn-sm">
+              <i class="fas fa-trash me-1"></i>Bulk Delete
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <div id="posts-table">
+          <%= render "posts_table", posts: @posts %>
+        </div>
+      </div>
+      <!-- Pagination -->
+      <div class="pagination-wrapper">
+        <div id="pagination">
+          <%= render "admin/shared/pagination", posts: @posts %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= content_for :scripts do %>
+  <script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('show');
+    }
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.querySelector('[onclick="toggleSidebar()"]');
+
+        if (window.innerWidth <= 768 &&
+            !sidebar.contains(e.target) &&
+            !toggleBtn.contains(e.target) &&
+            sidebar.classList.contains('show')) {
+            sidebar.classList.remove('show');
+        }
+    });
+  </script>
+<% end %>

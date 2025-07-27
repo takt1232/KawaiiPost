@@ -29,7 +29,7 @@
             <% if @post.published_date %>
               <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2">
                 <i class="fas fa-calendar-day me-1"></i>
-                <%= @post.published_date.strftime("%b %d, %Y") %>
+                <%= @post.published_date.strftime("%B %e, %Y") %>
               </span>
             <% end %>
           </div>
@@ -89,7 +89,7 @@
                   </div>
                   <div>
                     <p class="mb-0 fw-bold"><%= comment.user.email %></p>
-                    <small class="text-muted"><%= comment.created_at.strftime("%b %d, %Y")%></small>
+                    <small class="text-muted"><%= comment.created_at.strftime("%B %e, %Y") %></small>
                   </div>
                 </div>
                 <div class="comment-body">

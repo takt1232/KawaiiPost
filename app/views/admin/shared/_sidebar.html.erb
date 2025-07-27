@@ -1,0 +1,25 @@
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h4><i class="fas fa-shield-alt me-2"></i>Admin Panel</h4>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-item">
+      <%= link_to admin_dashboard_path, class: "nav-link #{'active' if current_page?(admin_dashboard_path)}" do %>
+        <i class="fas fa-tachometer-alt"></i>
+        Dashboard
+      <% end %>
+    </div>
+    <div class="nav-item">
+      <%= link_to admin_posts_index_path, class: "nav-link #{'active' if current_page?(admin_posts_index_path)}" do %>
+        <i class="fas fa-file-alt"></i>
+        Posts
+      <% end %>
+    </div>
+    <div class="nav-item">
+      <%= link_to admin_comments_index_path, class: "nav-link #{'active' if current_page?(admin_comments_index_path)}" do %>
+        <i class="fas fa-comments"></i>
+        Comments
+      <% end %>
+    </div>
+  </nav>
+</div>

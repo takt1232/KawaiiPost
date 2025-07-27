@@ -1,0 +1,9 @@
+<%= turbo_stream.replace "posts-count" do %>
+  <div class="stats-number" id="posts-count"><%= @posts_count %></div>
+<% end %>
+<%= turbo_stream.replace "comments-count" do %>
+  <div class="stats-number" id="comments-count"><%= @comments_count %></div>
+<% end %>
+<%= turbo_stream.replace "users-count" do %>
+  <div class="stats-number" id="users-count"><%= @users_count %></div>
+<% end %>

@@ -1,0 +1,27 @@
+<tr>
+  <td><input type="checkbox" class="form-check-input post-checkbox"></td>
+  <td>
+    <div>
+      <%= link_to post.title, admin_post_path(post), class: "post-title" %>
+      <div class="post-excerpt"><%= truncate(post.body, length: 80) %></div>
+    </div>
+  </td>
+  <td>
+    <div class="author-info">
+      <div class="author-avatar"><%= post.user.email[0].upcase %></div>
+      <div>
+        <small class="text-muted"><%= post.user.email %></small>
+      </div>
+    </div>
+  </td>
+  <td>
+    <div><%= post.published_date.strftime("%B %e, %Y") %></div>
+    <small class="text-muted"><%= time_ago_in_words(post.published_date) %> ago</small>
+  </td>
+  <td><span class="badge bg-info"><%= post.comments.count %></span></td>
+  <td>
+    <%= link_to admin_post_path(post), class: 'action-btn btn-delete', title: 'Delete', data: { turbo_method: :delete, turbo_confirm: "Delete this posts?" } do %>
+      <i class="fas fa-trash"></i>
+    <% end %>
+  </td>
+</tr>

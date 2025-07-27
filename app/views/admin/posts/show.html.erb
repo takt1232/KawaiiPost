@@ -1,0 +1,136 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "admin_post_show.css", "data-turbo-track": "reload" %>
+<% end %>
+<!-- Sidebar -->
+<%= render 'admin/shared/sidebar'%>
+<!-- Main Content -->
+<div class="main-content">
+  <!-- Top Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <button class="btn d-lg-none me-3" type="button" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <span class="navbar-brand mb-0 h1">Post Details</span>
+      <div class="d-flex align-items-center">
+        <%= link_to admin_posts_index_path, class: "btn btn-outline-secondary me-2" do %>
+          <i class="fas fa-arrow-left me-2"></i>Back to Posts
+        <% end %>
+        <div class="dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <i class="fas fa-user-circle me-2"></i>Admin
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Content -->
+  <div class="content-wrapper">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#" style="color: var(--primary-color); text-decoration: none;">Home</a></li>
+        <li class="breadcrumb-item"><a href="#" style="color: var(--primary-color); text-decoration: none;">Posts</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Post Details</li>
+      </ol>
+    </nav>
+    <h1 class="page-title">Post Details</h1>
+    <!-- Post Card -->
+    <div class="card post-card">
+      <div class="post-header">
+        <div class="d-flex justify-content-end align-items-center">
+          <div>
+            <%= link_to admin_post_path(@post), class: 'action-btn btn-delete', title: 'Delete', data: { turbo_method: :delete, turbo_confirm: "Delete this posts?" } do %>
+              <i class="fas fa-trash"></i> Delete Post
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="post-body">
+        <h2 class="post-title"><%= @post.title %></h2>
+        <div class="post-meta">
+          <div class="post-meta-item">
+            <i class="fas fa-user"></i>
+            <span><%= @post.user.email %></span>
+          </div>
+          <div class="post-meta-item">
+            <i class="fas fa-calendar-alt"></i>
+            <span><%= @post.published_date.strftime("%B %e, %Y") %></span>
+          </div>
+          <%# <div class="post-meta-item">
+            <i class="fas fa-tag"></i>
+            <span>Technology</span>
+          </div> %>
+          <div class="post-meta-item">
+            <i class="fas fa-comments"></i>
+            <span><%= @post.comments.count %> Comments</span>
+          </div>
+        </div>
+        <div class="post-content">
+          <%= @post.body %>
+        </div>
+      </div>
+      <div class="post-footer">
+        <div>
+          <span class="text-muted">Last updated: <%= time_ago_in_words(@post.updated_at) %></span>
+        </div>
+      </div>
+    </div>
+    <!-- Comments Card -->
+    <div class="card comments-card mt-4">
+      <div class="comments-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5><i class="fas fa-comments me-2"></i>Comments (<%= @post.comments.count %>)</h5>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary btn-sm" onclick="toggleSelectAllComments()">
+              <i class="fas fa-check-square me-1"></i>Select All
+            </button>
+            <button class="btn btn-outline-danger btn-sm" onclick="showBulkActionsComments()">
+              <i class="fas fa-trash me-1"></i>Bulk Actions
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="comments-list">
+        <%= render "comments_list", comments: @comments %>
+      </div>
+      <!-- Pagination -->
+      <div class="pagination-wrapper">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="text-muted">
+            Showing 1 to 4 of 24 results
+          </div>
+          <nav>
+            <ul class="pagination mb-0">
+              <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+              </li>
+              <li class="page-item active">
+                <span class="page-link">1</span>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">4</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">5</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

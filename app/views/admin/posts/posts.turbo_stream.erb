@@ -1,0 +1,6 @@
+<%= turbo_stream.replace "posts-table" do %>
+  <%= render "posts_table", posts: @posts %>
+<% end %>
+<%= turbo_stream.replace "pagination" do %>
+  <%= render "pagination", posts: @posts %>
+<% end %>

@@ -1,0 +1,15 @@
+<table class="table custom-table">
+  <thead>
+    <tr>
+      <th width="40"><input type="checkbox" class="form-check-input" id="selectAll"></th>
+      <th>Post</th>
+      <th>Author</th>
+      <th>Date</th>
+      <th>Comments</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "post",  collection: @posts %>
+  </tbody>
+</table>

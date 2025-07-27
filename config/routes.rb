@@ -3,17 +3,30 @@ Rails.application.routes.draw do
   get "posts/new"
   get "posts/edit"
   get "posts/delete"
-  get "admin/dashboard"
-  get "admin/posts"
-  get "admin/comments"
+
+  namespace :admin do
+    get "comments/index"
+    get "posts/index"
+    get "dashboard", to: "dashboard#index"
+    resources :posts, only: [ :destroy, :show ] do
+      resources :comments, only: [ :edit, :update ] do
+      end
+    end
+    resources :comments, only: [ :destroy ] do
+      collection do
+          delete :bulk_delete
+        end
+    end
+  end
+
+  devise_for :admin, controllers: {
+    registrations: "admin/registrations",
+    sessions: "admin/sessions"
+  }
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions"
-  }
-  devise_for :admin, controllers: {
-    registrations: "admin/registrations",
-    sessions: "admin/sessions"
   }
 
   resources :posts do
