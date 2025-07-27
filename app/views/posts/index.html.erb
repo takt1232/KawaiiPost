@@ -1,71 +1,70 @@
 <%= content_for :head do %>
   <%= stylesheet_link_tag "posts_index.css", "data-turbo-track": "reload" %>
 <% end %>
-<div class="container py-5">
+<div class="posts-container">
   <!-- Header Section -->
-  <div class="d-flex justify-content-between align-items-center mb-5">
-    <h1 class="fw-bold text-primary">
+  <div class="posts-header">
+    <h1>
       <i class="fas fa-newspaper me-2"></i> All Anime Posts
     </h1>
-    <%= link_to "New Post", new_post_path, class: "btn btn-primary btn-lg" %>
+    <%= link_to "New Post", new_post_path, class: "btn-new-post" %>
   </div>
-  <!-- Posts Section -->
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
+  <!-- Posts Grid -->
+  <div class="posts-grid">
+    <% if @posts.any? %>
       <% @posts.each do |post| %>
-        <div class="card mb-4 border-0 shadow-sm">
+        <div class="post-card">
           <!-- Card Header -->
-          <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h3 class="h5 mb-0"><%= post.title %></h3>
-            <% if post.published_date %>
-              <span class="badge bg-light text-primary rounded-pill">
-                <i class="fas fa-calendar-day me-1"></i>
-                <%= post.published_date.strftime("%B %e, %Y") %>
-              </span>
-            <% end %>
-          </div>
-          <!-- Card Body -->
-          <div class="card-body">
-            <p class="mb-3"><%= truncate(post.body, length: 250) %></p>
-            <div class="d-flex justify-content-end">
-              <% if current_user == post.user%>
-                <div class="btn-group btn-group-sm">
-                  <%= link_to post, class: "btn btn-outline-primary" do %>
-                    <i class="fas fa-eye me-1"></i> Show
-                  <% end %>
-                  <%= link_to edit_post_path(post), class: "btn btn-outline-secondary" do %>
-                    <i class="fas fa-edit me-1"></i> Edit
-                  <% end %>
-                  <%= link_to post_path(post), 
-                            data: { turbo_method: :delete, turbo_confirm: "Delete this post?" }, 
-                            class: "btn btn-outline-danger" do %>
-                    <i class="fas fa-trash me-1"></i> Delete
-                  <% end %>
-                </div>
+          <div class="post-card-header">
+            <div class="post-title-wrapper">
+              <h3><%= post.title %></h3>
+              <% if post.published_date %>
+                <span class="post-date-badge">
+                  <i class="fas fa-calendar-day me-1"></i>
+                  <%= post.published_date.strftime("%B %e, %Y") %>
+                </span>
               <% end %>
             </div>
           </div>
+          <!-- Card Body -->
+          <div class="post-card-body">
+            <p class="post-excerpt"><%= truncate(post.body, length: 250) %></p>
+            <% if current_user == post.user %>
+              <div class="post-actions">
+                <%= link_to post, class: "btn-action btn-view" do %>
+                  <i class="fas fa-eye me-1"></i> Show
+                <% end %>
+                <%= link_to edit_post_path(post), class: "btn-action btn-edit" do %>
+                  <i class="fas fa-edit me-1"></i> Edit
+                <% end %>
+                <%= link_to post_path(post), 
+                          data: { turbo_method: :delete, turbo_confirm: "Delete this post?" }, 
+                          class: "btn-action btn-delete" do %>
+                  <i class="fas fa-trash me-1"></i> Delete
+                <% end %>
+              </div>
+            <% end %>
+          </div>
           <!-- Card Footer -->
-          <div class="card-footer bg-light d-flex justify-content-between align-items-center">
-            <small class="text-muted">
+          <div class="post-card-footer">
+            <small class="post-meta">
               <i class="fas fa-clock me-1"></i>
               Posted <%= time_ago_in_words(post.created_at) %> ago
             </small>
-            <%= link_to "#", class: "btn btn-sm btn-link text-primary" do %>
+            <%= link_to "#", class: "btn-comment" do %>
               <i class="far fa-comment"></i> Comment
             <% end %>
           </div>
         </div>
       <% end %>
-    </div>
+    <% else %>
+      <!-- Empty State -->
+      <div class="empty-state">
+        <i class="fas fa-newspaper"></i>
+        <h3>No Posts Yet</h3>
+        <p>Be the first to share your anime thoughts!</p>
+        <%= link_to "Create Your First Post", new_post_path, class: "btn-empty-state" %>
+      </div>
+    <% end %>
   </div>
-  <!-- Empty State -->
-  <% if @posts.empty? %>
-    <div class="text-center py-5">
-      <i class="fas fa-newspaper fa-4x text-primary mb-3"></i>
-      <h3 class="text-muted">No Posts Yet</h3>
-      <p class="text-muted">Be the first to share your anime thoughts!</p>
-      <%= link_to "Create Your First Post", new_post_path, class: "btn btn-primary btn-lg mt-3" %>
-    </div>
-  <% end %>
 </div>
