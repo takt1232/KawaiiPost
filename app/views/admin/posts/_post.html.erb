@@ -1,5 +1,5 @@
 <tr>
-  <td><input type="checkbox" class="form-check-input post-checkbox"></td>
+  <td><%= check_box_tag "post_ids[]", post.id, false, class: "post-checkbox" %></td>
   <td>
     <div>
       <%= link_to post.title, admin_post_path(post), class: "post-title" %>

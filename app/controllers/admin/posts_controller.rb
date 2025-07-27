@@ -18,6 +18,15 @@ class Admin::PostsController < ApplicationController
     end
   end
 
+  def bulk_delete
+    if params[:post_ids].present?
+      Post.where(id: params[:post_ids]).destroy_all
+      redirect_to admin_posts_index_path, notice: "Selected posts have been deleted."
+    else
+      redirect_to admin_posts_index_path, alert: "No post selected."
+    end
+  end
+
   private
 
   def set_post

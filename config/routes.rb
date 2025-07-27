@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     get "posts/index"
     get "dashboard", to: "dashboard#index"
     resources :posts, only: [ :destroy, :show ] do
+      collection do
+        delete :bulk_delete
+      end
       resources :comments, only: [ :edit, :update ] do
       end
     end
