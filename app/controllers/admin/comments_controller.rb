@@ -1,6 +1,6 @@
 class Admin::CommentsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_post, only: [ :destroy, :edit, :update ]
+  before_action :set_post, only: [ :edit, :update ]
   before_action :set_comment, only: [ :destroy, :edit, :update ]
 
   def index
@@ -31,7 +31,7 @@ class Admin::CommentsController < ApplicationController
 
   def destroy
     if @comment.destroy
-      redirect_to admin_post_path(@post), notice: "Comment deleted successfully"
+      redirect_to admin_comments_index_path, notice: "Comment deleted successfully"
     else
       render :index, status: :unprocessable_entity
     end

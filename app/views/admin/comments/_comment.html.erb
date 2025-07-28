@@ -28,7 +28,7 @@
     <%= link_to edit_admin_post_comment_path(comment.post, comment), class: 'action-btn btn-edit', title: 'Edit' do %>
       <i class="fas fa-edit"></i>
     <% end %>
-    <%= link_to admin_comment_path(comment), class: 'action-btn btn-delete', title: 'Delete', data: { turbo_method: :delete, turbo_confirm: "Delete this posts?" } do %>
+    <%= link_to admin_comment_path(comment), class: 'action-btn btn-delete', title: 'Delete', data: { turbo_method: :delete, turbo_confirm: "Delete this comment?" } do %>
       <i class="fas fa-trash"></i>
     <% end %>
   </td>

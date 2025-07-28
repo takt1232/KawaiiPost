@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       collection do
         delete :bulk_delete
       end
-      resources :comments, only: [ :edit, :update ] do
+      resources :comments, only: [ :edit, :update, :destroy ] do
       end
     end
     resources :comments, only: [ :destroy ] do
