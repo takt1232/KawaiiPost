@@ -23,7 +23,7 @@ class Admin::PostsController < ApplicationController
 
   def destroy
     if @post.destroy
-      redirect_to admin_post_path, notice: "Post was successfully deleted"
+      redirect_to admin_posts_index_path, notice: "Post was successfully deleted"
     else
       render :index, status: :unprocessable_entity
     end
