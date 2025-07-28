@@ -9,11 +9,11 @@ class Admin::CommentsController < ApplicationController
     if params[:query].present?
       search_query = "%#{params[:query].downcase}%"
       @comments = @comments.joins(:user, :post)
-                          .where("LOWER(comments.content) LIKE :query OR 
+                          .where("LOWER(comments.content) LIKE :query OR
                                   LOWER(users.email) LIKE :query OR
-                                  LOWER(posts.title) LIKE :query", 
+                                  LOWER(posts.title) LIKE :query",
                                   query: search_query)
-  end
+    end
 
     @comments = @comments.order(created_at: :desc)
   end

@@ -8,9 +8,9 @@ class Admin::PostsController < ApplicationController
     if params[:query].present?
       search_query = "%#{params[:query].downcase}%"
       @posts = @posts.joins(:user)
-                          .where("LOWER(posts.title) LIKE :query OR 
-                                  LOWER(posts.content) LIKE :query OR
-                                  LOWER(user.email) LIKE :query", 
+                          .where("LOWER(posts.title) LIKE :query OR
+                                  LOWER(posts.body) LIKE :query OR
+                                  LOWER(users.email) LIKE :query",
                                   query: search_query)
     end
 
