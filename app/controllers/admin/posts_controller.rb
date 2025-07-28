@@ -4,6 +4,17 @@ class Admin::PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:user)
+
+    if params[:query].present?
+      search_query = "%#{params[:query].downcase}%"
+      @posts = @posts.joins(:user)
+                          .where("LOWER(posts.title) LIKE :query OR 
+                                  LOWER(posts.content) LIKE :query OR
+                                  LOWER(user.email) LIKE :query", 
+                                  query: search_query)
+    end
+
+    @posts = @posts.order(created_at: :desc)
   end
 
   def show

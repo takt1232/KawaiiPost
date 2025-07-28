@@ -34,15 +34,6 @@
             <% end %>
           </div>
           <div class="col-md-2">
-            <label class="form-label fw-semibold">Date Range</label>
-            <select class="form-select filter-select">
-              <option value="">All Time</option>
-              <option value="today">Today</option>
-              <option value="week">This Week</option>
-              <option value="month">This Month</option>
-            </select>
-          </div>
-          <div class="col-md-2">
             <label class="form-label">&nbsp;</label>
             <div class="d-grid">
               <button class="btn primary-btn">
@@ -69,9 +60,13 @@
       </div>
       <%= form_with url: bulk_delete_admin_comments_path, method: :delete, id: "bulk-delete-form", local: true do %>
         <div class="table-responsive">
-          <div id="comments-table">
-            <%= render "comments_table", comments: @comments %>
-          </div>
+          <% if !@comments.empty? %>
+            <div id="comments-table">
+              <%= render "comments_table", comments: @comments %>
+            </div>
+          <% else %>
+            <p class="text-muted p-2">No comments found</p>
+          <% end %>
         </div>
       <% end %>
       <!-- Pagination -->
