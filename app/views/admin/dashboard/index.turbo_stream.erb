@@ -4,3 +4,8 @@
 <%= turbo_stream.replace "comments-count" do %>
   <div class="stats-number" id="comments-count"><%= @comments_count %></div>
 <% end %>
+<%= turbo_stream.replace "activities" do %>
+  <div class="card-body p-0" id="activities">
+    <%= render partial: 'activity', collection: @activities %>
+  </div>
+<% end %>

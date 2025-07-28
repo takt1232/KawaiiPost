@@ -1,0 +1,12 @@
+<div class="activity-item">
+  <div class="d-flex align-items-center">
+    <div class="activity-icon <%= activity_icon_class(activity) %> me-3">
+      <i class="<%= activity_icon(activity) %>"></i>
+    </div>
+    <div class="flex-grow-1">
+      <div class="fw-semibold"><%= activity_title(activity) %></div>
+      <small class="text-muted"><%= activity_description(activity) %></small>
+    </div>
+    <small class="text-muted"><%= time_ago_in_words(activity.created_at) %> ago</small>
+  </div>
+</div>

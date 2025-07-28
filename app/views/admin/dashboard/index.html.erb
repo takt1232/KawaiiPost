@@ -44,55 +44,8 @@
           <div class="card-header">
             <h5><i class="fas fa-history me-2"></i>Recent Activity</h5>
           </div>
-          <div class="card-body p-0">
-            <div class="activity-item">
-              <div class="d-flex align-items-center">
-                <div class="activity-icon posts me-3">
-                  <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="flex-grow-1">
-                  <div class="fw-semibold">New post published</div>
-                  <small class="text-muted">"Getting Started with React" by John Doe</small>
-                </div>
-                <small class="text-muted">2 min ago</small>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="d-flex align-items-center">
-                <div class="activity-icon comments me-3">
-                  <i class="fas fa-comment"></i>
-                </div>
-                <div class="flex-grow-1">
-                  <div class="fw-semibold">New comment received</div>
-                  <small class="text-muted">Jane Smith commented on "Web Design Tips"</small>
-                </div>
-                <small class="text-muted">5 min ago</small>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="d-flex align-items-center">
-                <div class="activity-icon users me-3">
-                  <i class="fas fa-user-plus"></i>
-                </div>
-                <div class="flex-grow-1">
-                  <div class="fw-semibold">New user registered</div>
-                  <small class="text-muted">Mike Johnson joined the platform</small>
-                </div>
-                <small class="text-muted">15 min ago</small>
-              </div>
-            </div>
-            <div class="activity-item">
-              <div class="d-flex align-items-center">
-                <div class="activity-icon posts me-3">
-                  <i class="fas fa-edit"></i>
-                </div>
-                <div class="flex-grow-1">
-                  <div class="fw-semibold">Post updated</div>
-                  <small class="text-muted">"CSS Grid Layout" has been modified</small>
-                </div>
-                <small class="text-muted">1 hour ago</small>
-              </div>
-            </div>
+          <div class="card-body p-0" id="activities">
+            <%= render partial: 'activity', collection: @activities %>
           </div>
         </div>
       </div>
