@@ -8,15 +8,4 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-
-  private
-
-  def broadcast_stats_update
-    broadcast_update_to(
-      "admin_dashboard",
-      target: "users-count",
-      partial: "admin/dashboard/stats",
-      locals: { count: User.count, type: "users" }
-    )
-  end
 end
