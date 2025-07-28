@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [ :create ]
   before_action :set_comment, only: [ :edit, :update, :destroy ]
+  before_action :authorize_user!, only: [ :edit, :update, :destroy ]
 
   def edit
   end
@@ -43,5 +44,11 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def authorize_user!
+    unless current_user == @comment.user
+      redirect_to post_path(@comment.post), alert: "You are not authorized to perform this action."
+    end
   end
 end

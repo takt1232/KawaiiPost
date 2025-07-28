@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <button class="btn d-lg-none me-3" type="button" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <span class="navbar-brand mb-0 h1">Dashboard Overview</span>
+    <div class="ms-auto d-flex flex-row align-items-center">
+      <p class="me-2 mb-0"><%= current_admin.email %></p>
+      <div class="dropdown">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+          <i class="fas fa-user-circle me-2"></i>Admin
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+          <li>
+            <%= link_to destroy_admin_session_path, data: { turbo_method: :delete }, class: "dropdown-item" do %>
+              <i class="fas fa-sign-out-alt me-2"></i> Log Out
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

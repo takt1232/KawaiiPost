@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  after_create_commit :broadcast_stats_update
+  after_commit :broadcast_stats_update
 
   belongs_to :user
 
@@ -7,6 +7,7 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
+  validates :published_date, presence: true
 
   private
 

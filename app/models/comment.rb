@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-  after_create_commit :broadcast_stats_update
+  after_commit :broadcast_stats_update
 
   belongs_to :user
   belongs_to :post

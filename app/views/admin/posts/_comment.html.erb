@@ -6,7 +6,7 @@
         <div class="comment-avatar"><%= comment.user.email[0].upcase %></div>
         <div class="comment-meta">
           <div class="comment-name"><%= comment.user.email %></div>
-          <div class="comment-date"><%= comment.created_at.strftime("%B %e, %Y") %></div>
+          <div class="comment-date"><%= comment.created_at.strftime("%B %e, %Y at %l:%M %p") %></div>
         </div>
       </div>
       <div class="comment-content">

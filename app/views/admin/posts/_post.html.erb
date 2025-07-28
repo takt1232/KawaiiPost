@@ -15,7 +15,7 @@
     </div>
   </td>
   <td>
-    <div><%= post.published_date.strftime("%B %e, %Y") %></div>
+    <div><%= post.published_date.strftime("%B %e, %Y at %l:%M %p") %></div>
     <small class="text-muted"><%= time_ago_in_words(post.published_date) %> ago</small>
   </td>
   <td><span class="badge bg-info"><%= post.comments.count %></span></td>

@@ -8,11 +8,11 @@
         <div class="card-body p-5">
           <div class="text-center mb-5">
             <h2 class="fw-bold brand-font text-primary">
-              <i class="fas fa-cat me-2"></i>Welcome Back!
+              <i class="fas fa-cat me-2"></i>Welcome Back Admin!
             </h2>
             <p class="text-muted">Log in to continue your anime journey</p>
           </div>
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'needs-validation', novalidate: true, data: { turbo: false }}) do |f| %>
             <% if alert %>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <i class="fas fa-exclamation-triangle me-2"></i><%= alert %>

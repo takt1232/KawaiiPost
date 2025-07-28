@@ -22,7 +22,7 @@
     <%= link_to comment.post.title, admin_post_path(comment.post), class: "post-link" %>
   </td>
   <td>
-    <div><%= comment.created_at.strftime("%B %e, %Y")%></div>
+    <div><%= comment.created_at.strftime("%B %e, %Y at %l:%M %p") %></div>
   </td>
   <td>
     <%= link_to edit_admin_post_comment_path(comment.post, comment), class: 'action-btn btn-edit', title: 'Edit' do %>

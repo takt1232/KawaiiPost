@@ -14,202 +14,186 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <a class="nav-link active" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Popular</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Categories</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-      </ul>
-      <div class="ms-lg-3 mt-2 mt-lg-0">
-        <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-light me-2" %>
-        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-light btn-kawaii" %>
-        <% if user_signed_in? %>
-          <%= link_to "User Log Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-danger" %>
-        <% end %>
-        <% if admin_signed_in? %>
-          <%= link_to "Admin Log Out", destroy_admin_session_path, data: { turbo_method: :delete }, class: "btn btn-danger" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</nav>
-<!-- Hero Section -->
-<section class="py-5" style="padding-top: 80px !important;">
-  <div class="container py-5">
-    <div class="row align-items-center">
-      <div class="col-lg-6 mb-4 mb-lg-0 animate-fadeIn">
-        <h1 class="display-4 fw-bold mb-4 brand-font">Share Your <span class="text-primary">Anime</span> Passion</h1>
-        <p class="lead mb-4">KawaiiPost is the perfect place to blog about your favorite anime, discover new shows, and connect with fellow otaku.</p>
-        <div class="d-flex gap-3">
-          <%= link_to "Get Started", new_user_session_path, class: "btn btn-kawaii btn-lg animate-pulse text-white" %>
-          <a href="#" class="btn btn-outline-primary btn-lg">Learn More</a>
-        </div>
-      </div>
-      <div class="col-lg-6 animate-fadeIn animate-delay-1">
-        <img src="https://i.imgur.com/JQlE6gN.png" alt="Cute anime characters blogging" class="img-fluid hero-img">
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Features Section -->
-<section class="py-5 bg-white">
-  <div class="container py-5">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold section-title brand-font animate-fadeIn">Why Choose KawaiiPost?</h2>
-      <p class="lead text-muted animate-fadeIn animate-delay-1">Everything an anime fan needs in one place</p>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-4 animate-fadeIn animate-delay-1">
-        <div class="card h-100 border-0 shadow-sm feature-card">
-          <div class="card-body text-center p-4">
-            <div class="mb-3">
-              <i class="fas fa-pencil-alt feature-icon"></i>
-            </div>
-            <h4 class="mb-3">Easy Blogging</h4>
-            <p class="text-muted">Share your anime reviews, episode reactions, and fan theories with our simple editor.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 animate-fadeIn animate-delay-2">
-        <div class="card h-100 border-0 shadow-sm feature-card">
-          <div class="card-body text-center p-4">
-            <div class="mb-3">
-              <i class="fas fa-users feature-icon"></i>
-            </div>
-            <h4 class="mb-3">Otaku Community</h4>
-            <p class="text-muted">Connect with fellow anime fans, discuss your favorite shows, and make new friends.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 animate-fadeIn animate-delay-3">
-        <div class="card h-100 border-0 shadow-sm feature-card">
-          <div class="card-body text-center p-4">
-            <div class="mb-3">
-              <i class="fas fa-fire feature-icon"></i>
-            </div>
-            <h4 class="mb-3">Trending Content</h4>
-            <p class="text-muted">Discover what's popular in the anime world and stay updated with the latest trends.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Popular Posts Preview -->
-<section class="py-5 anime-bg">
-  <div class="container py-5">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold section-title brand-font">Recent Popular Posts</h2>
-      <p class="lead text-muted">See what the community is talking about</p>
-    </div>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm post-card">
-          <img src="https://i.imgur.com/5QX2WzB.jpg" class="card-img-top" alt="Attack on Titan">
-          <div class="card-body">
-            <span class="badge bg-danger mb-2">Shonen</span>
-            <h5 class="card-title">Attack on Titan Final Season Analysis</h5>
-            <p class="card-text text-muted">A deep dive into the themes and symbolism of the final season...</p>
-          </div>
-          <div class="card-footer bg-transparent border-0">
-            <small class="text-muted">Posted 2 days ago</small>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm post-card">
-          <img src="https://i.imgur.com/8XJQZz9.jpg" class="card-img-top" alt="Spy x Family">
-          <div class="card-body">
-            <span class="badge bg-success mb-2">Comedy</span>
-            <h5 class="card-title">Why Spy x Family is Perfect for Beginners</h5>
-            <p class="card-text text-muted">Exploring how this anime blends genres to create the ultimate starter anime...</p>
-          </div>
-          <div class="card-footer bg-transparent border-0">
-            <small class="text-muted">Posted 5 days ago</small>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm post-card">
-          <img src="https://i.imgur.com/3QX2WzB.jpg" class="card-img-top" alt="Studio Ghibli">
-          <div class="card-body">
-            <span class="badge bg-info mb-2">Movie</span>
-            <h5 class="card-title">Studio Ghibli's Hidden Messages</h5>
-            <p class="card-text text-muted">Uncovering the environmental and social themes in Miyazaki's works...</p>
-          </div>
-          <div class="card-footer bg-transparent border-0">
-            <small class="text-muted">Posted 1 week ago</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="text-center mt-5">
-      <a href="#" class="btn btn-kawaii btn-lg">View All Posts</a>
-    </div>
-  </div>
-</section>
-<!-- Call to Action -->
-<section class="py-5 text-white" style="background: linear-gradient(135deg, var(--primary), var(--secondary));">
-  <div class="container py-5 text-center">
-    <h2 class="display-5 fw-bold mb-4 brand-font">Ready to Join Our Anime Community?</h2>
-    <p class="lead mb-5">Sign up now and start sharing your anime journey with thousands of fellow fans!</p>
-    <div class="d-flex justify-content-center gap-3">
-      <a href="#" class="btn btn-light btn-lg px-4 btn-kawaii animate-pulse">Sign Up Free</a>
-      <a href="#" class="btn btn-outline-light btn-lg px-4">Learn More</a>
-    </div>
-  </div>
-</section>
-<!-- Footer -->
-<footer class="py-5 bg-dark text-white">
-  <div class="container py-4">
-    <div class="row">
-      <div class="col-lg-3 mb-4 mb-lg-0">
-        <h5 class="fw-bold mb-3 brand-font">
-          <i class="fas fa-cat me-2"></i>KawaiiPost
-        </h5>
-        <p>Your ultimate destination for anime blogging and community.</p>
-        <div class="d-flex gap-3">
-          <a href="#" class="text-white"><i class="fab fa-twitter fa-lg"></i></a>
-          <a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
-          <a href="#" class="text-white"><i class="fab fa-discord fa-lg"></i></a>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5 class="fw-bold mb-3">Explore</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">Popular Posts</a></li>
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">Categories</a></li>
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">Top Bloggers</a></li>
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">Anime Calendar</a></li>
         </ul>
-      </div>
-      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5 class="fw-bold mb-3">Community</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">Guidelines</a></li>
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">Discussions</a></li>
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">Events</a></li>
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">Support</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <h5 class="fw-bold mb-3">Legal</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">Terms of Service</a></li>
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">Cookie Policy</a></li>
-          <li class="mb-2"><a href="#" class="text-white text-decoration-none">DMCA</a></li>
-        </ul>
+        <div class="ms-lg-3 mt-2 mt-lg-0">
+          <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-light me-2" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-light btn-kawaii" %>
+        </div>
       </div>
     </div>
-    <hr class="my-4">
-    <div class="text-center">
-      <p class="mb-0">&copy; 2025 KawaiiPost. All rights reserved.</p>
+  </nav>
+  <!-- Hero Section -->
+  <section class="py-5" style="padding-top: 80px !important;">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0 animate-fadeIn">
+          <h1 class="display-4 fw-bold mb-4 brand-font">Share Your <span class="text-primary">Anime</span> Passion</h1>
+          <p class="lead mb-4">KawaiiPost is the perfect place to blog about your favorite anime, discover new shows, and connect with fellow otaku.</p>
+          <div class="d-flex gap-3">
+            <%= link_to "Get Started", new_user_session_path, class: "btn btn-kawaii btn-lg animate-pulse text-white" %>
+            <a href="#" class="btn btn-outline-primary btn-lg">Learn More</a>
+          </div>
+        </div>
+        <div class="col-lg-6 animate-fadeIn animate-delay-1">
+          <img src="https://i.imgur.com/JQlE6gN.png" alt="Cute anime characters blogging" class="img-fluid hero-img">
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
+  <!-- Features Section -->
+  <section class="py-5 bg-white">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold section-title brand-font animate-fadeIn">Why Choose KawaiiPost?</h2>
+        <p class="lead text-muted animate-fadeIn animate-delay-1">Everything an anime fan needs in one place</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4 animate-fadeIn animate-delay-1">
+          <div class="card h-100 border-0 shadow-sm feature-card">
+            <div class="card-body text-center p-4">
+              <div class="mb-3">
+                <i class="fas fa-pencil-alt feature-icon"></i>
+              </div>
+              <h4 class="mb-3">Easy Blogging</h4>
+              <p class="text-muted">Share your anime reviews, episode reactions, and fan theories with our simple editor.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 animate-fadeIn animate-delay-2">
+          <div class="card h-100 border-0 shadow-sm feature-card">
+            <div class="card-body text-center p-4">
+              <div class="mb-3">
+                <i class="fas fa-users feature-icon"></i>
+              </div>
+              <h4 class="mb-3">Otaku Community</h4>
+              <p class="text-muted">Connect with fellow anime fans, discuss your favorite shows, and make new friends.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 animate-fadeIn animate-delay-3">
+          <div class="card h-100 border-0 shadow-sm feature-card">
+            <div class="card-body text-center p-4">
+              <div class="mb-3">
+                <i class="fas fa-fire feature-icon"></i>
+              </div>
+              <h4 class="mb-3">Trending Content</h4>
+              <p class="text-muted">Discover what's popular in the anime world and stay updated with the latest trends.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Popular Posts Preview -->
+  <section class="py-5 anime-bg">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold section-title brand-font">Recent Popular Posts</h2>
+        <p class="lead text-muted">See what the community is talking about</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm post-card">
+            <img src="https://i.imgur.com/5QX2WzB.jpg" class="card-img-top" alt="Attack on Titan">
+            <div class="card-body">
+              <span class="badge bg-danger mb-2">Shonen</span>
+              <h5 class="card-title">Attack on Titan Final Season Analysis</h5>
+              <p class="card-text text-muted">A deep dive into the themes and symbolism of the final season...</p>
+            </div>
+            <div class="card-footer bg-transparent border-0">
+              <small class="text-muted">Posted 2 days ago</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm post-card">
+            <img src="https://i.imgur.com/8XJQZz9.jpg" class="card-img-top" alt="Spy x Family">
+            <div class="card-body">
+              <span class="badge bg-success mb-2">Comedy</span>
+              <h5 class="card-title">Why Spy x Family is Perfect for Beginners</h5>
+              <p class="card-text text-muted">Exploring how this anime blends genres to create the ultimate starter anime...</p>
+            </div>
+            <div class="card-footer bg-transparent border-0">
+              <small class="text-muted">Posted 5 days ago</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 border-0 shadow-sm post-card">
+            <img src="https://i.imgur.com/3QX2WzB.jpg" class="card-img-top" alt="Studio Ghibli">
+            <div class="card-body">
+              <span class="badge bg-info mb-2">Movie</span>
+              <h5 class="card-title">Studio Ghibli's Hidden Messages</h5>
+              <p class="card-text text-muted">Uncovering the environmental and social themes in Miyazaki's works...</p>
+            </div>
+            <div class="card-footer bg-transparent border-0">
+              <small class="text-muted">Posted 1 week ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <a href="#" class="btn btn-kawaii btn-lg">View All Posts</a>
+      </div>
+    </div>
+  </section>
+  <!-- Call to Action -->
+  <section class="py-5 text-white" style="background: linear-gradient(135deg, var(--primary), var(--secondary));">
+    <div class="container py-5 text-center">
+      <h2 class="display-5 fw-bold mb-4 brand-font">Ready to Join Our Anime Community?</h2>
+      <p class="lead mb-5">Sign up now and start sharing your anime journey with thousands of fellow fans!</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="#" class="btn btn-light btn-lg px-4 btn-kawaii animate-pulse">Sign Up Free</a>
+        <a href="#" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="py-5 bg-dark text-white">
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-lg-3 mb-4 mb-lg-0">
+          <h5 class="fw-bold mb-3 brand-font">
+            <i class="fas fa-cat me-2"></i>KawaiiPost
+          </h5>
+          <p>Your ultimate destination for anime blogging and community.</p>
+          <div class="d-flex gap-3">
+            <a href="#" class="text-white"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-discord fa-lg"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">Explore</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Popular Posts</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Categories</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Top Bloggers</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Anime Calendar</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">Community</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Guidelines</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Discussions</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Events</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Support</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="fw-bold mb-3">Legal</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Terms of Service</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Cookie Policy</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">DMCA</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 KawaiiPost. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>

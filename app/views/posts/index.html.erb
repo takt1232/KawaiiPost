@@ -7,8 +7,19 @@
     <h1>
       <i class="fas fa-newspaper me-2"></i> All Anime Posts
     </h1>
+    <%= link_to "User Log Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-danger" %>
     <%= link_to "New Post", new_post_path, class: "btn-new-post" %>
   </div>
+  <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-danger">
+      <%= alert %>
+    </div>
+  <% end %>
   <!-- Posts Grid -->
   <div class="posts-grid">
     <% if @posts.any? %>
@@ -17,7 +28,7 @@
           <!-- Card Header -->
           <div class="post-card-header">
             <div class="post-title-wrapper">
-              <h3><%= post.title %></h3>
+              <%= link_to post.title, post_path(post), class: "post-title h3 text-decoration-none" %>
               <% if post.published_date %>
                 <span class="post-date-badge">
                   <i class="fas fa-calendar-day me-1"></i>
@@ -25,25 +36,25 @@
                 </span>
               <% end %>
             </div>
-          </div>
-          <!-- Card Body -->
-          <div class="post-card-body">
-            <p class="post-excerpt"><%= truncate(post.body, length: 250) %></p>
             <% if current_user == post.user %>
-              <div class="post-actions">
-                <%= link_to post, class: "btn-action btn-view" do %>
-                  <i class="fas fa-eye me-1"></i> Show
+              <div class="post-actions justify-content-start">
+                <%= link_to post_path(post), class: "btn-action btn-view" do %>
+                  <i class="fas fa-eye me-1"></i>
                 <% end %>
                 <%= link_to edit_post_path(post), class: "btn-action btn-edit" do %>
-                  <i class="fas fa-edit me-1"></i> Edit
+                  <i class="fas fa-edit me-1"></i>
                 <% end %>
                 <%= link_to post_path(post), 
                           data: { turbo_method: :delete, turbo_confirm: "Delete this post?" }, 
                           class: "btn-action btn-delete" do %>
-                  <i class="fas fa-trash me-1"></i> Delete
+                  <i class="fas fa-trash me-1"></i>
                 <% end %>
               </div>
             <% end %>
+          </div>
+          <!-- Card Body -->
+          <div class="post-card-body">
+            <p class="post-excerpt"><%= truncate(post.body, length: 250) %></p>
           </div>
           <!-- Card Footer -->
           <div class="post-card-footer">
@@ -51,8 +62,8 @@
               <i class="fas fa-clock me-1"></i>
               Posted <%= time_ago_in_words(post.created_at) %> ago
             </small>
-            <%= link_to "#", class: "btn-comment" do %>
-              <i class="far fa-comment"></i> Comment
+            <%= link_to post_path(post), class: "btn-comment" do %>
+              <i class="far fa-comment me-2"></i><%= post.comments.count %> Comments
             <% end %>
           </div>
         </div>
