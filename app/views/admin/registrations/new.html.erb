@@ -12,7 +12,7 @@
             </h2>
             <p class="text-muted">Start sharing your anime passion with our community</p>
           </div>
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true, data: { turbo: false }}) do |f| %>
             <% if resource.errors.any? %>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <h5 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Oops! Please fix these issues:</h5>
